@@ -1,0 +1,23 @@
+#running hello-world container
+docker run hello-world
+
+#running ubuntu container with bash command
+docker run -it ubuntu bash
+
+#runnig python container
+docker run -it python:3.9
+
+#running python container with bash prompt which helps to install pkgs using pip
+docker run -it --entrypoint=bash python:3.9
+
+#sample Dockerfile 
+FROM python:3.9
+RUN pip install pandas
+WORKDIR /app
+COPY pipeline.py pipeline.py
+ENTRYPOINT ["bash"]
+
+#to build and run the above Dockerfile 
+docker build -t test:pandas .
+docker run test:pandas
+
